@@ -1,0 +1,19 @@
+{
+    "name": "Doanh.BuildPipeline",
+    "rootNamespace": "Doanh.BuildPipeline",
+    "references": [
+        "Unity.Addressables.Editor",
+        "Unity.AddressableImporter.Editor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
