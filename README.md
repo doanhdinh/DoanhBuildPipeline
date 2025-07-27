@@ -4,10 +4,14 @@ This repository provides an API for building a Unity project from the command li
 
 ### **Installation**
 
+**Prerequisites:**
+This package requires Unity Addressables package. Make sure you have the following package installed in your project:
+- `com.unity.addressables` (version 1.19.19 or higher)
+
 To install the package, add the following to your project's **`manifest.json`** file:
 
 ```
-"com.doanh.buildpipeline": "https://github.com/doanhdinh/DoanhBuildPipeline.git#v1.6.0",
+"com.doanh.buildpipeline": "https://github.com/doanhdinh/DoanhBuildPipeline.git#v1.6.1",
 
 ```
 

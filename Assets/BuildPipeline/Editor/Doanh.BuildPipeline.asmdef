@@ -2,8 +2,7 @@
     "name": "Doanh.BuildPipeline",
     "rootNamespace": "Doanh.BuildPipeline",
     "references": [
-        "Unity.Addressables.Editor",
-        "Unity.AddressableImporter.Editor"
+        "Unity.Addressables.Editor"
     ],
     "includePlatforms": [
         "Editor"
