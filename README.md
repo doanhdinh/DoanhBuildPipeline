@@ -11,7 +11,7 @@ This package requires Unity Addressables package. Make sure you have the followi
 To install the package, add the following to your project's **`manifest.json`** file:
 
 ```
-"com.doanh.buildpipeline": "https://github.com/doanhdinh/DoanhBuildPipeline.git#v1.6.1",
+"com.doanh.buildpipeline": "https://github.com/doanhdinh/DoanhBuildPipeline.git#v1.6.2",
 
 ```
 
