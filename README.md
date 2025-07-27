@@ -7,7 +7,7 @@ This repository provides an API for building a Unity project from the command li
 To install the package, add the following to your project's **`manifest.json`** file:
 
 ```
-"com.doanh.buildpipeline": "https://github.com/DoanhGame/DoanhBuildPipeline.git#",
+"com.doanh.buildpipeline": "https://github.com/doanhdinh/DoanhBuildPipeline.git#v1.6.0",
 
 ```
 
