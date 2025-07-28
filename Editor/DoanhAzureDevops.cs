@@ -655,7 +655,9 @@ namespace Doanh.BuildPipeline
             Debug.LogError($"Stack Trace: {ex.StackTrace}");
             throw; // Re-throw để Unity có thể handle
         }
-        public static void SetIl2CppCodeGeneration(string targetName, Il2CppCodeGeneration codeGeneration)
+    }
+    
+    public static void SetIl2CppCodeGeneration(string targetName, Il2CppCodeGeneration codeGeneration)
         {
 #if UNITY_2022_1_OR_NEWER
             NamedBuildTarget target = NamedBuildTarget.Standalone; // Default value
