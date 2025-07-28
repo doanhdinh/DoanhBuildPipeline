@@ -85,6 +85,7 @@ namespace Doanh.BuildPipeline
 
 #endregion
 #region BuildPlayer
+        [UnityEditor.MenuItem("Tools/Doanh Build Pipeline/Perform Build")]
         public static void PerformBuild()
         {
             try
