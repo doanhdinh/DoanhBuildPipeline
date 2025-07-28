@@ -276,12 +276,27 @@ namespace Doanh.BuildPipeline
             switch (il2cppCodegen)
             {
                 case "OptimizeSize":
-                    SetIl2CppCodeGeneration(buildTarget, Il2CppCodeGeneration.OptimizeSize);
+                    if (!string.IsNullOrEmpty(buildTarget))
+                    {
+                        SetIl2CppCodeGeneration(buildTarget, Il2CppCodeGeneration.OptimizeSize);
+                    }
+                    else
+                    {
+                        Debug.LogWarning("buildTarget is empty, skipping IL2CPP code generation setting");
+                    }
                     break;
                 case "OptimizeSpeed":
-                    SetIl2CppCodeGeneration(buildTarget, Il2CppCodeGeneration.OptimizeSpeed);
+                    if (!string.IsNullOrEmpty(buildTarget))
+                    {
+                        SetIl2CppCodeGeneration(buildTarget, Il2CppCodeGeneration.OptimizeSpeed);
+                    }
+                    else
+                    {
+                        Debug.LogWarning("buildTarget is empty, skipping IL2CPP code generation setting");
+                    }
                     break;
                 default:
+                    Debug.Log($"Unknown il2cppCodegen value: {il2cppCodegen}");
                     break;
             }
             try
@@ -619,8 +634,15 @@ namespace Doanh.BuildPipeline
         public static void SetIl2CppCodeGeneration(string targetName, Il2CppCodeGeneration codeGeneration)
         {
 #if UNITY_2022_1_OR_NEWER
-            NamedBuildTarget target;
-            BuildTargetGroup targetGroup = BuildTargetGroup.iOS;
+            NamedBuildTarget target = NamedBuildTarget.Standalone; // Default value
+            BuildTargetGroup targetGroup = BuildTargetGroup.Standalone; // Default value
+            
+            if (string.IsNullOrEmpty(targetName))
+            {
+                Debug.LogWarning("SetIl2CppCodeGeneration: targetName is null or empty, using default Standalone target");
+                return;
+            }
+            
             switch (targetName)
             {
                 case "Android":
@@ -655,10 +677,18 @@ namespace Doanh.BuildPipeline
                     target = NamedBuildTarget.Server;
                     targetGroup = BuildTargetGroup.Standalone;
                     break;
+                default:
+                    Debug.LogWarning($"SetIl2CppCodeGeneration: Unknown target '{targetName}', using default Standalone target");
+                    target = NamedBuildTarget.Standalone;
+                    targetGroup = BuildTargetGroup.Standalone;
+                    break;
             }
 
-
-            if (PlayerSettings.GetScriptingBackend(targetGroup) != ScriptingImplementation.IL2CPP) return;
+            if (PlayerSettings.GetScriptingBackend(targetGroup) != ScriptingImplementation.IL2CPP) 
+            {
+                Debug.Log($"SetIl2CppCodeGeneration: Scripting backend is not IL2CPP for {targetName}, skipping");
+                return;
+            }
 
             PlayerSettings.SetIl2CppCodeGeneration(target, codeGeneration);
 #else
