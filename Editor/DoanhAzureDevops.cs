@@ -91,7 +91,9 @@ namespace Doanh.BuildPipeline
             //-outputFileName $(XcodeProjectFolderName) -configuration $(Configuration) -buildNumber $(BuildNumber) -appversion $(AppVersion)
             string[] args = System.Environment.GetCommandLineArgs();
             //log all arguments joined by space
+            Debug.Log("=== COMMAND LINE ARGUMENTS ===");
             Debug.Log(string.Join(" ", args));
+            Debug.Log("=== PARSING ARGUMENTS ===");
             
 
             for (int i = 0; i < args.Length; i++)
@@ -99,6 +101,7 @@ namespace Doanh.BuildPipeline
                 if (args[i] == "-buildTarget")
                 {
                     buildTarget = args[i + 1];
+                    Debug.Log($"Parsed buildTarget: '{buildTarget}'");
                 }
                 else if (args[i] == "-outputPath")
                 {
@@ -273,11 +276,16 @@ namespace Doanh.BuildPipeline
                     break;
             }
 
+            Debug.Log($"=== IL2CPP CODE GENERATION ===");
+            Debug.Log($"il2cppCodegen: '{il2cppCodegen}'");
+            Debug.Log($"buildTarget: '{buildTarget}'");
+            
             switch (il2cppCodegen)
             {
                 case "OptimizeSize":
                     if (!string.IsNullOrEmpty(buildTarget))
                     {
+                        Debug.Log($"Setting IL2CPP code generation to OptimizeSize for target: {buildTarget}");
                         SetIl2CppCodeGeneration(buildTarget, Il2CppCodeGeneration.OptimizeSize);
                     }
                     else
@@ -288,6 +296,7 @@ namespace Doanh.BuildPipeline
                 case "OptimizeSpeed":
                     if (!string.IsNullOrEmpty(buildTarget))
                     {
+                        Debug.Log($"Setting IL2CPP code generation to OptimizeSpeed for target: {buildTarget}");
                         SetIl2CppCodeGeneration(buildTarget, Il2CppCodeGeneration.OptimizeSpeed);
                     }
                     else
