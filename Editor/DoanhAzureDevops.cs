@@ -87,13 +87,17 @@ namespace Doanh.BuildPipeline
 #region BuildPlayer
         public static void PerformBuild()
         {
-            //get commandline arguments -outputPath $(Build.BinariesDirectory)
-            //-outputFileName $(XcodeProjectFolderName) -configuration $(Configuration) -buildNumber $(BuildNumber) -appversion $(AppVersion)
-            string[] args = System.Environment.GetCommandLineArgs();
-            //log all arguments joined by space
-            Debug.Log("=== COMMAND LINE ARGUMENTS ===");
-            Debug.Log(string.Join(" ", args));
-            Debug.Log("=== PARSING ARGUMENTS ===");
+            try
+            {
+                Debug.Log("=== PERFORM BUILD STARTED ===");
+                
+                //get commandline arguments -outputPath $(Build.BinariesDirectory)
+                //-outputFileName $(XcodeProjectFolderName) -configuration $(Configuration) -buildNumber $(BuildNumber) -appversion $(AppVersion)
+                string[] args = System.Environment.GetCommandLineArgs();
+                //log all arguments joined by space
+                Debug.Log("=== COMMAND LINE ARGUMENTS ===");
+                Debug.Log(string.Join(" ", args));
+                Debug.Log("=== PARSING ARGUMENTS ===");
             
 
             for (int i = 0; i < args.Length; i++)
@@ -639,6 +643,16 @@ namespace Doanh.BuildPipeline
                     Debug.Log("Không chạy vào case export");
                     break;
             }
+            
+            Debug.Log("=== PERFORM BUILD COMPLETED SUCCESSFULLY ===");
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"=== PERFORM BUILD FAILED ===");
+            Debug.LogError($"Exception Type: {ex.GetType().Name}");
+            Debug.LogError($"Exception Message: {ex.Message}");
+            Debug.LogError($"Stack Trace: {ex.StackTrace}");
+            throw; // Re-throw để Unity có thể handle
         }
         public static void SetIl2CppCodeGeneration(string targetName, Il2CppCodeGeneration codeGeneration)
         {
