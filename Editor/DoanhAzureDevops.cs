@@ -103,68 +103,70 @@ namespace Doanh.BuildPipeline
 
             for (int i = 0; i < args.Length; i++)
             {
-                if (args[i] == "-buildTarget")
+                try
                 {
-                    buildTarget = args[i + 1];
-                    Debug.Log($"Parsed buildTarget: '{buildTarget}'");
-                }
-                else if (args[i] == "-outputPath")
+                    if (args[i] == "-buildTarget" && i + 1 < args.Length)
+                    {
+                        buildTarget = args[i + 1];
+                        Debug.Log($"Parsed buildTarget: '{buildTarget}'");
+                    }
+                else if (args[i] == "-outputPath" && i + 1 < args.Length)
                 {
                     outputPath = args[i + 1];
                 }
-                else if (args[i] == "-outputFileName")
+                else if (args[i] == "-outputFileName" && i + 1 < args.Length)
                 {
                     outputFileName = args[i + 1];
                 }
-                else if (args[i] == "-configuration")
+                else if (args[i] == "-configuration" && i + 1 < args.Length)
                 {
                     configuration = args[i + 1];
                 }
-                else if (args[i] == "-buildNumber")
+                else if (args[i] == "-buildNumber" && i + 1 < args.Length)
                 {
                     buildNumber = args[i + 1];
                 }
-                else if (args[i] == "-appversion")
+                else if (args[i] == "-appversion" && i + 1 < args.Length)
                 {
                     appversion = args[i + 1];
                 }
-                else if (args[i] == "-env")
+                else if (args[i] == "-env" && i + 1 < args.Length)
                 {
                     environment = args[i + 1];
                 }
-                else if (args[i] == "-scriptingBackend")
+                else if (args[i] == "-scriptingBackend" && i + 1 < args.Length)
                 {
                     scriptingBackend = args[i + 1];
                 }
-                else if (args[i] == "-outputExtension")
+                else if (args[i] == "-outputExtension" && i + 1 < args.Length)
                 {
                     outputExtension = args[i + 1];
                 }
-                else if(args[i] == "-typeBundle")
+                else if(args[i] == "-typeBundle" && i + 1 < args.Length)
                 {
                     typeBundle = args[i + 1];
                 }
-                else if(args[i] == "-assetBundle")
+                else if(args[i] == "-assetBundle" && i + 1 < args.Length)
                 {
                     assetBundle = args[i + 1];
                 }
-                else if(args[i] == "-addressableRule")
+                else if(args[i] == "-addressableRule" && i + 1 < args.Length)
                 {
                     addressableRule = args[i + 1];
                 }
-                else if(args[i] == "-enableAddressableRule")
+                else if(args[i] == "-enableAddressableRule" && i + 1 < args.Length)
                 {
                     enableAddressableRule = args[i + 1];
                 }
-                else if(args[i] == "-buildServer")
+                else if(args[i] == "-buildServer" && i + 1 < args.Length)
                 {
                     buildServer = args[i + 1];
                 }
-                else if(args[i] == "-buildManualAddressable")
+                else if(args[i] == "-buildManualAddressable" && i + 1 < args.Length)
                 {
                     buildManualAddressable = args[i + 1];
                 }
-                else if (args[i] == "-exportProject")
+                else if (args[i] == "-exportProject" && i + 1 < args.Length)
                 {
                     exportProject = args[i + 1];
                 }
@@ -231,9 +233,14 @@ namespace Doanh.BuildPipeline
                     il2cppCodegen = args[i + 1];
                 }
 
-                else if (args[i] == "-buildAddressables")
+                else if (args[i] == "-buildAddressables" && i + 1 < args.Length)
                 {
                     buildAddressables = args[i + 1];
+                }
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogError($"Error parsing argument at index {i}: {ex.Message}");
                 }
             }
 
