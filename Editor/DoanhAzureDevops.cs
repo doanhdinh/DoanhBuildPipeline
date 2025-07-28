@@ -662,7 +662,6 @@ namespace Doanh.BuildPipeline
             Debug.LogError($"Stack Trace: {ex.StackTrace}");
             throw; // Re-throw để Unity có thể handle
         }
-    }
     
     public static void SetIl2CppCodeGeneration(string targetName, Il2CppCodeGeneration codeGeneration)
         {
